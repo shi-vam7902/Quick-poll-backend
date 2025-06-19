@@ -3,13 +3,13 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const pollController = require('./controller/pollController');
 const userController = require('./controller/userController');
-
+require('dotenv').config();
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 const PORT = process.env.PORT || 3001;
-
+const MONGO_URI = process.env.MONGO_URI;
 // Connect to MongoDB
-mongoose.connect('mongodb+srv://glasierinc:dMrG5vO1aF1U5jyZ@glasierprod01.uphfb.mongodb.net/quickpoll', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('Connected to MongoDB'))
   .catch(err => console.error('MongoDB connection error:', err));
 
