@@ -1,13 +1,15 @@
 const express = require('express');
 const cors = require('cors');
+const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 const pollController = require('./controller/pollController');
 const userController = require('./controller/userController');
-require('dotenv').config();
+dotenv.config();
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 const PORT = process.env.PORT || 3001;
 const MONGO_URI = process.env.MONGO_URI;
+console.log(MONGO_URI);
 // Connect to MongoDB
 mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('Connected to MongoDB'))
